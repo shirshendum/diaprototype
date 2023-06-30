@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+    <script>
+        function showPreview() {
+            var publicationContent = document.getElementById("publication").value;
+            var patentContent = document.getElementById("patent").value;
+            var previewHeader = "Preview";
+            var previewText = "Publication Preview:\n\n" + publicationContent + "\n\nPatent Preview:\n\n" + patentContent;
+            
+            alert(previewText);        }
+    </script>
+</head>
+<body>
+    <h1>Welcome, {{ student_name }}!</h1>
+    <form action="/home" method="POST" enctype="multipart/form-data">
+
+        <label for="semester">Semester:</label>
+        <select id="semester" name="semester" required>
+            <option value="">Select Semester</option>
+            <option value="Sem 4">Sem 4</option>
+            <option value="Sem 5">Sem 5</option>
+            <option value="Sem 6">Sem 6</option>
+            <option value="Sem 7">Sem 7</option>
+
+        </select><br><br>
+
+        <label for="ay">Academic Year:</label>
+        <select id="ay" name="ay" required>
+            <option value="">Select Academic Year</option>
+            <option value="2023">2023-24</option>
+            <option value="2024">2024-25</option>
+            <option value="2025">2025-26</option>
+            <option value="2026">2026-27</option>
+            <option value="2027">2027-28</option>
+            <option value="2028">2028-29</option>
+            <option value="2029">2029-30</option>
+        </select><br><br>
+
+        
+        <label for="semtype">Semester Type:</label>
+        <select id="semtype" name="semtype" required>
+            <option value="">Select Semester Type</option>
+            <option value="1">Sem 1</option>
+            <option value="2">Sem 2</option>
+        </select><br><br>
+
+        
+        <label for="publication">Publication (if any):</label><br>
+        <textarea id="publication" name="publication" rows="4" cols="90"></textarea><br><br>
+
+        <label for="patent">Patent (if any):</label><br>
+        <textarea id="patent" name="patent" rows="4" cols="90"></textarea><br><br>
+
+        <label for="upload">Upload PDF:</label><br>
+        <input type="file" id="upload" name="upload" accept=".pdf"><br>
+        <span style="font-style: italic; font-size: smaller;">(Browse and upload again in case wrong file got uploaded)</span><br><br>
+
+        <button type="button" onclick="showPreview()">Preview</button><br><br><br>
+        <input type="submit" value="Submit">
+        
+    </form>
+
+    <!-- Logout button -->
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+
+
+</body>
+</html>
+

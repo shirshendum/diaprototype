@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Progress</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        .approve-button, .decline-button {
+            margin: 5px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .undo-button, .download-button {
+            margin: 5px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 50%; /* Make the buttons fill the cell width */
+            box-sizing: border-box; /* Include padding in button width */
+        }
+
+
+        .approve-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .decline-button {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .undo-button {
+            background-color: #87CEEB;
+            color: white;
+        }
+        
+        .download-button {
+            background-color: #D3D3D3;
+            color: red;
+        }
+
+        table th:not(.button-column),
+        table td:not(.button-column) {
+            width: 10%;
+        }
+
+        .button-column {
+            width: 20%;
+        }
+    </style>    
+</head>
+<body>
+    <h2>Student Progress</h2>
+    
+    <h3>Pending Approval</h3>
+    <table>
+        <tr>
+            <th>Progress_ID</th>
+            <th>Student_ID</th>
+            <th>Semester</th>
+            <th>Publication</th>
+            <th>Patent</th>
+            <th>Download Report</th>
+            <th>Advisor_ID</th>
+            <th>Approved</th>
+            <th>Action</th>
+        </tr>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.student_id }}</td>
+            <td>{{ entry.semester }}</td>
+            <td>{{ entry.publication }}</td>
+            <td>{{ entry.patent }}</td>
+            <td class="button-container">
+                <form method="post" action="/download/{{ entry.id }}">
+                    <button type="submit" class="download-button">Download Report</button>
+                </form>
+            </td>            
+            <td>{{ entry.advisor_id }}</td>
+            <td>{{ entry.approved }}</td>
+            <td class="button-container">
+                <form method="post" action="/approve/{{ entry.id }}">
+                    <button type="submit" class="approve-button">Approve</button>
+                </form>
+                <form method="post" action="/decline/{{ entry.id }}">
+                    <button type="submit" class="decline-button">Decline</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h3>Approved</h3>
+    <table>
+        <tr>
+            <th>Progress_ID</th>
+            <th>Student_ID</th>
+            <th>Semester</th>
+            <th>Publication</th>
+            <th>Patent</th>
+            <th>Download Report</th>
+            <th>Advisor_ID</th>
+            <th>Approved</th>
+            <th>Action</th>
+        </tr>
+        {% for entry in entries2 %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.student_id }}</td>
+            <td>{{ entry.semester }}</td>
+            <td>{{ entry.publication }}</td>
+            <td>{{ entry.patent }}</td>
+            <td class="button-container">
+                <form method="post" action="/download/{{ entry.id }}">
+                    <button type="submit" class="download-button">Download Report</button>
+                </form>
+            </td>
+            <td>{{ entry.advisor_id }}</td>
+            <td>{{ entry.approved }}</td>
+            <td class="button-container">
+                <form method="post" action="/undo/{{ entry.id }}">
+                    <button type="submit" class="undo-button">Undo</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>    
+    
+    <h3>Declined</h3>
+    <table>
+        <tr>
+            <th>Progress_ID</th>
+            <th>Student_ID</th>
+            <th>Semester</th>
+            <th>Publication</th>
+            <th>Patent</th>
+            <th>Download Report</th>
+            <th>Advisor_ID</th>
+            <th>Approved</th>
+            <th>Action</th>
+        </tr>
+        {% for entry in entries3 %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.student_id }}</td>
+            <td>{{ entry.semester }}</td>
+            <td>{{ entry.publication }}</td>
+            <td>{{ entry.patent }}</td>
+            <td class="button-container">
+                <form method="post" action="/download/{{ entry.id }}">
+                    <button type="submit" class="download-button">Download Report</button>
+                </form>
+            </td>            
+            <td>{{ entry.advisor_id }}</td>
+            <td>{{ entry.approved }}</td>
+            <td class="button-container">
+                <form method="post" action="/undo/{{ entry.id }}">
+                    <button type="submit" class="undo-button">Undo</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>    
+    
+    
+    
+    <!-- Logout button -->
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
+

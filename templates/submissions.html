@@ -1,0 +1,76 @@
+<!-- submissions.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Details Filled</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Details Filled By All Institute Coordinators</h1>
+        
+    <table>
+        <thead>
+            <tr>
+                <th>Student_Name</th>
+                <th>Institute_ID</th>
+                <th>Student_ID</th>
+                <th>Year</th>
+                <th>Quarter</th>
+                <th>Month_1_Stipend</th>
+                <th>Month_2_Stipend</th>
+                <th>Month_3_Stipend</th>
+                <th>Annual_Research_Grant</th>
+                <th>Balance_Research_Grant</th>
+                <th>Excess_Fund</th>
+                <th>Total_Fund_Received</th>
+                <th>Balance_Fund</th>
+                <th>Additional_Comments</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+            <tr>
+                <td>{{ submission[15] }}</td>
+                <td>{{ submission[18] }}</td>
+                <td>{{ submission[1] }}</td>
+                <td>{{ submission[5] }}</td>
+                <td>{{ submission[6] }}</td>
+                <td>{{ submission[2] }}</td>
+                <td>{{ submission[3] }}</td>
+                <td>{{ submission[4] }}</td>
+                <td>{{ submission[12] }}</td>
+                <td>{{ submission[11] }}</td>
+                <td>{{ submission[10] }}</td>
+                <td>{{ submission[9] }}</td>
+                <td>{{ submission[8] }}</td>                                                                                
+                <td>{{ submission[7] }}</td>
+                <td>{{ submission[13] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Logout button -->
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+    
+</body>
+</html>
+
